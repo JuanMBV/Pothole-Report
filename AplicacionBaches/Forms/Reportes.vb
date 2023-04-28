@@ -72,7 +72,8 @@ Public Class Reportes
                 reportes.getSetSolu = sol
 
                 reportes.insertaReporte()
-                Reportes.DGV(DataGridView1)
+                reportes.DGV(DataGridView1)
+                txtReporte.Focus()
             End If
         End If
 
@@ -155,6 +156,7 @@ Public Class Reportes
                 reportes.limpiarCajas()
                 txtReporte.Text = ""
                 reportes.DGV(DataGridView1)
+                txtReporte.Focus()
             End If
         Else
             MessageBox.Show("No existe un registro con esa clave !!!")
@@ -181,6 +183,7 @@ Public Class Reportes
                 reportes.limpiarCajas()
                 txtReporte.Text = ""
                 reportes.DGV(DataGridView1)
+                txtReporte.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If
