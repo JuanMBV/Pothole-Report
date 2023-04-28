@@ -28,6 +28,7 @@ Public Class Colonias
                 txtClave.Text = ""
                 colonias.limpiarCajas()
                 colonias.DGV(DataGridView1)
+                txtClave.Focus()
             End If
         End If
     End Sub
@@ -56,6 +57,7 @@ Public Class Colonias
                 txtClave.Text = ""
                 colonias.limpiarCajas()
                 colonias.DGV(DataGridView1)
+                txtClave.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If
@@ -79,6 +81,7 @@ Public Class Colonias
                 colonias.validarEliminacion()
                 txtClave.Text = ""
                 colonias.DGV(DataGridView1)
+                txtClave.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If

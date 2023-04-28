@@ -25,6 +25,7 @@ Public Class Turnos
                 txtClave.Text = ""
                 txtDescripcion.Text = ""
                 turnos.DGV(DataGridView1)
+                txtClave.Focus()
             End If
         End If
     End Sub
@@ -50,6 +51,7 @@ Public Class Turnos
                 txtClave.Text = ""
                 txtDescripcion.Text = ""
                 turnos.DGV(DataGridView1)
+                txtClave.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If
@@ -73,6 +75,7 @@ Public Class Turnos
                 turnos.validarEliminacion()
                 txtClave.Text = ""
                 turnos.DGV(DataGridView1)
+                txtClave.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If

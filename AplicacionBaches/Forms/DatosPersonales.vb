@@ -31,6 +31,7 @@ Public Class DatosPersonales
                 txtTelefono.Text = ""
                 persona.limpiarCajas()
                 persona.DGV(DataGridView1)
+                txtTelefono.Focus()
             End If
         End If
     End Sub
@@ -62,6 +63,7 @@ Public Class DatosPersonales
                 txtTelefono.Text = ""
                 persona.limpiarCajas()
                 persona.DGV(DataGridView1)
+                txtTelefono.Focus()
             Else
                 MessageBox.Show("No existe una persona con ese teléfono !!!")
             End If
@@ -85,6 +87,7 @@ Public Class DatosPersonales
                 persona.validarEliminacion()
                 txtTelefono.Text = ""
                 persona.DGV(DataGridView1)
+                txtTelefono.Focus()
             Else
                 MessageBox.Show("No existe un registro con esa clave !!!")
             End If
