@@ -247,7 +247,7 @@ Public Class ClaseReportes
     End Sub
 
     Public Function consultaReporte() As Boolean
-        Dim adapter As New SqlDataAdapter("SELECT id_bache, Empleado.nombre AS Empleado, Cuadrilla.nombre AS Cuadrilla, Colonia.nombre AS Colonia, Reportes.telefono, direccion, entre_calle1, entre_calle2, fecha_reporte, hora_reporte, hora_asignada, fecha_asignada, hora_solucion, fecha_solucion, solucion FROM Reportes, Empleado, Cuadrilla, Colonia WHERE id_bache = " & Reportes.txtReporte.Text & " AND Empleado.id_empleado = Reportes.id_empleado AND Colonia.id_colonia = Reportes.id_colonia AND Cuadrilla.id_cuadrilla = Reportes.id_cuadrilla", Form1.myConn)
+        Dim adapter As New SqlDataAdapter("SELECT id_bache, Empleado.nombre AS Empleado, Empleado.paterno As Paterno, Empleado.materno, Cuadrilla.nombre AS Cuadrilla, Colonia.nombre AS Colonia, Reportes.telefono, direccion, entre_calle1, entre_calle2, fecha_reporte, hora_reporte, hora_asignada, fecha_asignada, hora_solucion, fecha_solucion, solucion FROM Reportes, Empleado, Cuadrilla, Colonia WHERE id_bache = " & Reportes.txtReporte.Text & " AND Empleado.id_empleado = Reportes.id_empleado AND Colonia.id_colonia = Reportes.id_colonia AND Cuadrilla.id_cuadrilla = Reportes.id_cuadrilla", Form1.myConn)
         Dim dt As New DataTable
 
         consultaReporte = False
@@ -262,7 +262,9 @@ Public Class ClaseReportes
                 'Aqui tengo que checar q regresen bien las fechas mas que nada
                 'Tambien checar que al regresaral empleado tambien se regrese el apellido
                 id_bache = CStr(dt.Rows(0)("id_bache"))
-                Reportes.txtEmpleado.Text = CStr(dt.Rows(0)("Empleado"))
+                Dim nomEmp As String = String.Concat(dt.Rows(0)("Empleado"), " ", dt.Rows(0)("Paterno"), " ", dt.Rows(0)("Materno"))
+
+                Reportes.txtEmpleado.Text = nomEmp
                 Reportes.txtTelefono.Text = CStr(dt.Rows(0)("telefono"))
                 Reportes.cmbDireccion.Text = CStr(dt.Rows(0)("direccion"))
                 Reportes.cmbEntreCalle1.Text = CStr(dt.Rows(0)("entre_calle1"))
@@ -396,7 +398,7 @@ Public Class ClaseReportes
 
     Public Sub DGV(ByVal DataGridView1 As DataGridView)
         Dim fechaActual As String = Date.Now.ToString("yyyy-MM-dd")
-        Dim adapter As New SqlDataAdapter("SELECT id_bache As IDBache, Empleado.nombre As Atiende, Cuadrilla.nombre As CuadrillaAsignada, Colonia.nombre As Colonia, Reportes.telefono As Telefono, direccion As Direccion, entre_calle1 As EntreCalle1, entre_calle2 As EntreCalle2, fecha_reporte As FechaReporte, hora_reporte As HoraReporte, fecha_asignada As FechaAsignada, hora_asignada As HoraAsignada, solucion As Se_soluciono, fecha_solucion As FechaSolucion, hora_solucion As HoraSolucion FROM Reportes, Empleado, Cuadrilla, Colonia WHERE Empleado.id_empleado = Reportes.id_empleado AND Cuadrilla.id_cuadrilla = Reportes.id_cuadrilla AND Colonia.id_colonia = Reportes.id_colonia AND fecha_reporte = '" & fechaActual & "'", Form1.myConn)
+        Dim adapter As New SqlDataAdapter("SELECT id_bache As IDBache, CONCAT(Empleado.nombre, ' ', Empleado.paterno, ' ', Empleado.materno) As Atiende, Cuadrilla.nombre As CuadrillaAsignada, Colonia.nombre As Colonia, Reportes.telefono As Telefono, direccion As Direccion, entre_calle1 As EntreCalle1, entre_calle2 As EntreCalle2, fecha_reporte As FechaReporte, hora_reporte As HoraReporte, fecha_asignada As FechaAsignada, hora_asignada As HoraAsignada, solucion As Se_soluciono, fecha_solucion As FechaSolucion, hora_solucion As HoraSolucion FROM Reportes, Empleado, Cuadrilla, Colonia WHERE Empleado.id_empleado = Reportes.id_empleado AND Cuadrilla.id_cuadrilla = Reportes.id_cuadrilla AND Colonia.id_colonia = Reportes.id_colonia AND fecha_reporte = '" & fechaActual & "'", Form1.myConn)
         Dim dt As New DataTable
 
         adapter.Fill(dt)
